@@ -1,3 +1,4 @@
+import 'package:app_proyect/src/services/api_services.dart';
 import 'package:flutter/material.dart';
 
 class ProBanner extends StatefulWidget {
@@ -9,27 +10,44 @@ class ProBanner extends StatefulWidget {
 
 class _ProBannerState extends State<ProBanner> {
 
-  
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300.0,
-      child: PageView.builder(
+
+    return FutureBuilder(
+      future: ApiServices().productsBanner(),
+      builder: (context, AsyncSnapshot snap) {
+        if(snap.hasData) {
+        return SizedBox(
+        height: 300.0,
+        child: PageView.builder(
         controller: PageController(
-          viewportFraction: 0.85
+        viewportFraction: 0.85
         ),
         padEnds: false,
         itemCount: 10,
-          itemBuilder: (context, i){
-            return Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Container(
-                color: Colors.blueGrey,
-              ),
-            );
-          }
-      )
+        itemBuilder: (context, i){
+        return Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(
+                snap.data['products'][i]['thumbnail']
+              )
+            )
+          ),
+        ),
+        );
+        }
+        )
+        );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }
     );
   }
 }
