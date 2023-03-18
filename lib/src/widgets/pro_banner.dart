@@ -17,6 +17,7 @@ class _ProBannerState extends State<ProBanner> {
       future: ApiServices().productsBanner(),
       builder: (context, AsyncSnapshot snap) {
         if(snap.hasData) {
+          final prodList = snap.data['products'] as List;
         return SizedBox(
         height: 300.0,
         child: PageView.builder(
@@ -24,7 +25,7 @@ class _ProBannerState extends State<ProBanner> {
         viewportFraction: 0.85
         ),
         padEnds: false,
-        itemCount: 10,
+        itemCount: prodList.length,
         itemBuilder: (context, i){
         return Padding(
         padding: const EdgeInsets.all(5.0),
@@ -33,7 +34,8 @@ class _ProBannerState extends State<ProBanner> {
             image: DecorationImage(
               fit: BoxFit.fill,
               image: NetworkImage(
-                snap.data['products'][i]['thumbnail']
+                //snap.data['products'][i]['thumbnail']
+                prodList[i]['thumbnail']
               )
             )
           ),

@@ -1,3 +1,4 @@
+import 'package:app_proyect/src/widgets/best_seller.dart';
 import 'package:app_proyect/src/widgets/categorias.dart';
 import 'package:app_proyect/src/widgets/flayers.dart';
 import 'package:app_proyect/src/widgets/pro_banner.dart';
@@ -15,23 +16,10 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: ListView(
-        children: [
+        children: const [
           ProBanner(),
           Categorias(),
-          Flayers(
-            title: "Promociones",
-            content: Container(
-              height: 250.0,
-              color: Colors.red,
-            ),
-          ),
-          Flayers(
-            title: "Lo Mas vendido",
-            content: Container(
-              height: 250.0,
-              color: Colors.green,
-            ),
-          ),
+          BestSeller(),
         ],
       ),
     );

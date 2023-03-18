@@ -16,5 +16,22 @@ class ApiServices {
     return body;
   }
 
+  Future bestSeller() async {
+    final response = await http.get(Uri.http(
+        'dummyjson.com', 'products',
+      {
+        'limit': '6',
+        'skip': '10'
+      }
+    ));
+    final body = jsonDecode(response.body);
+    return body;
+  }
+
+  Future bestRating() async {
+    final response = await http.get(Uri.https('dummyjson.com', 'products'));
+    final body = jsonDecode(response.body);
+    return body;
+  }
 
 }
