@@ -29,7 +29,9 @@ class ApiServices {
   }
 
   Future bestRating() async {
-    final response = await http.get(Uri.https('dummyjson.com', 'products'));
+    final response = await http.get(Uri.https('dummyjson.com', 'products', {
+      'select': 'thumbnail,description,rating'
+    }));
     final body = jsonDecode(response.body);
     return body;
   }

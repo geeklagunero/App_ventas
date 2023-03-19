@@ -1,3 +1,4 @@
+import 'package:app_proyect/src/widgets/best_rating.dart';
 import 'package:app_proyect/src/widgets/best_seller.dart';
 import 'package:app_proyect/src/widgets/categorias.dart';
 import 'package:app_proyect/src/widgets/flayers.dart';
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
           ProBanner(),
           Categorias(),
           BestSeller(),
+          BestRating()
         ],
       ),
     );
